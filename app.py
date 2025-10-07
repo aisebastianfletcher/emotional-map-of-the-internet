@@ -7,16 +7,20 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Step 1: Load sample data
+    # Load sample data
     df = pd.read_csv("data/sample_data.csv")
 
-    # Step 2: Analyze emotions for each headline
-    df['emotion'] = df['headline'].apply(lambda x: max(te.get_emotion(str(x)), key=te.get_emotion(str(x)).get))
+    # Analyze emotions
+    df['emotion'] = df['headline'].apply(
+        lambda x: max(te.get_emotion(str(x)), key=te.get_emotion(str(x)).get)
+    )
 
-    # Step 3: Aggregate emotions by country
-    emotion_by_country = df.groupby('country')['emotion'].agg(lambda x: x.value_counts().index[0]).reset_index()
+    # Aggregate emotions by country
+    emotion_by_country = df.groupby('country')['emotion'].agg(
+        lambda x: x.value_counts().index[0]
+    ).reset_index()
 
-    # Step 4: Create choropleth map
+    # Create choropleth map
     fig = px.choropleth(
         emotion_by_country,
         locations="country",
@@ -27,7 +31,7 @@ def index():
     )
     fig.update_layout(template="plotly_dark", height=600)
 
-    # Step 5: Convert plot to HTML
+    # Convert plot to HTML
     graph_html = fig.to_html(full_html=False)
 
     return render_template('index.html', plot=graph_html)
