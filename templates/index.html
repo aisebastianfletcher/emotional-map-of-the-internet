@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotional Map of the Internet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🌍 Emotional Map of the Internet</h1>
+    <p class="desc">A quick data science visualization of how emotions dominate global headlines.</p>
+    <div class="chart">{{ plot|safe }}</div>
+</body>
+</html>
