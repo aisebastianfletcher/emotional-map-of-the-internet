@@ -1,0 +1,31 @@
+import pandas as pd
+import plotly.express as px
+import text2emotion as te
+
+# Load data
+df = pd.read_csv("data/sample_data.csv")
+
+# Analyze emotions
+df['emotion'] = df['headline'].apply(
+    lambda x: max(te.get_emotion(str(x)), key=te.get_emotion(str(x)).get)
+)
+
+# Aggregate dominant emotion by country
+emotion_by_country = df.groupby('country')['emotion'].agg(
+    lambda x: x.value_counts().index[0]
+).reset_index()
+
+# Create choropleth map
+fig = px.choropleth(
+    emotion_by_country,
+    locations="country",
+    locationmode="country names",
+    color="emotion",
+    title="🌍 Emotional Map of the Internet",
+    color_discrete_sequence=px.colors.qualitative.Bold
+)
+fig.update_layout(template="plotly_dark", height=600)
+
+# Save as standalone HTML
+fig.write_html("map.html")
+print("map.html generated! Open it in your browser to see the map.")
