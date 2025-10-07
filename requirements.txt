@@ -1,0 +1,5 @@
+flask
+pandas
+plotly
+text2emotion
+requests
