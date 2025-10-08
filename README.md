@@ -59,3 +59,41 @@ Live Demo
 
 View the live interactive map here:
 https://aisebastianfletcher.github.io/emotional-map-of-the-internet/
+
+PROJECT STRUCTURE: 
+
+emotional-map-of-the-internet/
+├── data/                # Your CSV files
+├── generate_map.py      # Script to generate the map
+├── index.html           # Interactive map for GitHub Pages
+├── README.md            # Project description
+├── preview.png          # Screenshot of the map
+├── requirements.txt     # Python dependencies
+└── .gitignore           # Files to ignore
+
+
+BONUS: Extending the Project.....
+
+You can add more sources for headlines, such as Reddit, Twitter, or news APIs. Here’s an example of how to fetch Reddit posts using the praw library:
+
+import praw
+import pandas as pd
+
+# Initialize Reddit API
+reddit = praw.Reddit(
+    client_id='YOUR_CLIENT_ID',
+    client_secret='YOUR_CLIENT_SECRET',
+    user_agent='emotional-map-bot'
+)
+
+# Select subreddit and fetch posts
+subreddit = reddit.subreddit('worldnews')
+posts = subreddit.hot(limit=100)
+
+# Collect post titles
+headlines = [post.title for post in posts]
+
+# Save to CSV
+df = pd.DataFrame(headlines, columns=['headline'])
+df.to_csv('data/reddit_headlines.csv', index=False)
+
