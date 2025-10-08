@@ -1,4 +1,4 @@
-[![Emotional Map Preview](preview.png)](https://aisebastianfletcher.github.io/emotional-map-of-the-internet/)
+[![Emotional Map Preview](result-preview.png)](https://aisebastianfletcher.github.io/emotional-map-of-the-internet/)
 
 
 # Emotional Map of the Internet
