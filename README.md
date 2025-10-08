@@ -1,3 +1,6 @@
+[![Emotional Map Preview](preview.png)](https://aisebastianfletcher.github.io/emotional-map-of-the-internet/)
+
+
 # Emotional Map of the Internet
 
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
