@@ -1,31 +1,216 @@
-import pandas as pd
-import plotly.express as px
-import text2emotion as te
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_92d065d860b079e9f29dbc06f3d6cf56 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
 
-# Load data
-df = pd.read_csv("data/sample_data.csv")
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
 
-# Analyze emotions
-df['emotion'] = df['headline'].apply(
-    lambda x: max(te.get_emotion(str(x)), key=te.get_emotion(str(x)).get)
-)
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
 
-# Aggregate dominant emotion by country
-emotion_by_country = df.groupby('country')['emotion'].agg(
-    lambda x: x.value_counts().index[0]
-).reset_index()
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
 
-# Create choropleth map
-fig = px.choropleth(
-    emotion_by_country,
-    locations="country",
-    locationmode="country names",
-    color="emotion",
-    title="🌍 Emotional Map of the Internet",
-    color_discrete_sequence=px.colors.qualitative.Bold
-)
-fig.update_layout(template="plotly_dark", height=600)
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_92d065d860b079e9f29dbc06f3d6cf56" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_92d065d860b079e9f29dbc06f3d6cf56 = L.map(
+                "map_92d065d860b079e9f29dbc06f3d6cf56",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
 
-# Save as standalone HTML
-fig.write_html("map.html")
-print("map.html generated! Open it in your browser to see the map.")
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8ce5df4be77b080c930b440e95d3e17d = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8ce5df4be77b080c930b440e95d3e17d.addTo(map_92d065d860b079e9f29dbc06f3d6cf56);
+        
+    
+            var circle_marker_7870a4808ea4840e40913719f63884ca = L.circleMarker(
+                [37.0902, -95.7129],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_92d065d860b079e9f29dbc06f3d6cf56);
+        
+    
+        var popup_8d90aa4d8fa6230edee86083006feb00 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e8a4d7aa7951d7f1afae107de3be3017 = $(`<div id="html_e8a4d7aa7951d7f1afae107de3be3017" style="width: 100.0%; height: 100.0%;">USA: Happiness (0.8)</div>`)[0];
+                popup_8d90aa4d8fa6230edee86083006feb00.setContent(html_e8a4d7aa7951d7f1afae107de3be3017);
+            
+        
+
+        circle_marker_7870a4808ea4840e40913719f63884ca.bindPopup(popup_8d90aa4d8fa6230edee86083006feb00)
+        ;
+
+        
+    
+    
+            var circle_marker_46224911bb18741a61f179753b9b7143 = L.circleMarker(
+                [55.3781, -3.436],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_92d065d860b079e9f29dbc06f3d6cf56);
+        
+    
+        var popup_27044166d11fa41d2077bf792f86c58e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_00458b2348bd72f81dbcaedbac042312 = $(`<div id="html_00458b2348bd72f81dbcaedbac042312" style="width: 100.0%; height: 100.0%;">UK: Curiosity (0.6)</div>`)[0];
+                popup_27044166d11fa41d2077bf792f86c58e.setContent(html_00458b2348bd72f81dbcaedbac042312);
+            
+        
+
+        circle_marker_46224911bb18741a61f179753b9b7143.bindPopup(popup_27044166d11fa41d2077bf792f86c58e)
+        ;
+
+        
+    
+    
+            var circle_marker_8480954fc9f976da9c62805825eea0d3 = L.circleMarker(
+                [36.2048, 138.2529],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_92d065d860b079e9f29dbc06f3d6cf56);
+        
+    
+        var popup_d0cb28db380911adf2516ca4494aeaed = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d7f4576319171ddf9a4f09c7084dfbcf = $(`<div id="html_d7f4576319171ddf9a4f09c7084dfbcf" style="width: 100.0%; height: 100.0%;">Japan: Calm (0.7)</div>`)[0];
+                popup_d0cb28db380911adf2516ca4494aeaed.setContent(html_d7f4576319171ddf9a4f09c7084dfbcf);
+            
+        
+
+        circle_marker_8480954fc9f976da9c62805825eea0d3.bindPopup(popup_d0cb28db380911adf2516ca4494aeaed)
+        ;
+
+        
+    
+    
+            var circle_marker_afa3f799e55690bc5e961313048491db = L.circleMarker(
+                [-14.235, -51.9253],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_92d065d860b079e9f29dbc06f3d6cf56);
+        
+    
+        var popup_2e8ccaf6f244cbb7c49c6ddf6ef703c3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_86981d8cdc217252dee6013b34385401 = $(`<div id="html_86981d8cdc217252dee6013b34385401" style="width: 100.0%; height: 100.0%;">Brazil: Joy (0.9)</div>`)[0];
+                popup_2e8ccaf6f244cbb7c49c6ddf6ef703c3.setContent(html_86981d8cdc217252dee6013b34385401);
+            
+        
+
+        circle_marker_afa3f799e55690bc5e961313048491db.bindPopup(popup_2e8ccaf6f244cbb7c49c6ddf6ef703c3)
+        ;
+
+        
+    
+    
+            var circle_marker_d7e0350e4a16a1331f7e15f477e5b4f9 = L.circleMarker(
+                [20.5937, 78.9629],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_92d065d860b079e9f29dbc06f3d6cf56);
+        
+    
+        var popup_fa173e99c643baf80d0fce1713cc4b1b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d39da897c7c9e02fc56b997e126f9286 = $(`<div id="html_d39da897c7c9e02fc56b997e126f9286" style="width: 100.0%; height: 100.0%;">India: Excitement (0.85)</div>`)[0];
+                popup_fa173e99c643baf80d0fce1713cc4b1b.setContent(html_d39da897c7c9e02fc56b997e126f9286);
+            
+        
+
+        circle_marker_d7e0350e4a16a1331f7e15f477e5b4f9.bindPopup(popup_fa173e99c643baf80d0fce1713cc4b1b)
+        ;
+
+        
+    
+</script>
+</html>

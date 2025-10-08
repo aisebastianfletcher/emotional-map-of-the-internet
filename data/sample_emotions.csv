@@ -1,0 +1,6 @@
+country,latitude,longitude,emotion,intensity
+USA,37.0902,-95.7129,Happiness,0.8
+UK,55.3781,-3.4360,Curiosity,0.6
+Japan,36.2048,138.2529,Calm,0.7
+Brazil,-14.2350,-51.9253,Joy,0.9
+India,20.5937,78.9629,Excitement,0.85
