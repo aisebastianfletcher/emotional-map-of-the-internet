@@ -47,7 +47,8 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/aisebastianfletcher/emotional-map-of-the-internet.git
 cd emotional-map-of-the-internet
-pip install -r requirements.txt```
+pip install -r requirements.txt
+```
 
 
 ## Generate the map
