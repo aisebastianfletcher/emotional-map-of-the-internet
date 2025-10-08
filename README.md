@@ -47,16 +47,16 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/aisebastianfletcher/emotional-map-of-the-internet.git
 cd emotional-map-of-the-internet
-pip install -r requirements.txt
+pip install -r requirements.txt```
 
 
 ## Generate the map
 
-"python generate_map.py"
+```python generate_map.py```
 
 ## Open the map in your browser
 
-"start index.html"
+```start index.html```
 
 #live-demo
 
@@ -65,14 +65,14 @@ https://aisebastianfletcher.github.io/emotional-map-of-the-internet/
 
 #project-structure
 
-emotional-map-of-the-internet/
+```emotional-map-of-the-internet/
 ├── data/                # Your CSV files
 ├── generate_map.py      # Script to generate the map
 ├── index.html           # Interactive map for GitHub Pages
 ├── README.md            # Project description
 ├── preview.png          # Screenshot of the map
 ├── requirements.txt     # Python dependencies
-└── .gitignore           # Files to ignore
+└── .gitignore           # Files to ignore```
 
 
 #notes
@@ -83,20 +83,20 @@ import praw
 import pandas as pd
 
 # Initialize Reddit API
-reddit = praw.Reddit(
+```reddit = praw.Reddit(
     client_id='YOUR_CLIENT_ID',
     client_secret='YOUR_CLIENT_SECRET',
     user_agent='emotional-map-bot'
-)
+)```
 
 # Select subreddit and fetch posts
-subreddit = reddit.subreddit('worldnews')
-posts = subreddit.hot(limit=100)
+```subreddit = reddit.subreddit('worldnews')
+posts = subreddit.hot(limit=100)```
 
 # Collect post titles
-headlines = [post.title for post in posts]
+```headlines = [post.title for post in posts]```
 
 # Save to CSV
-df = pd.DataFrame(headlines, columns=['headline'])
-df.to_csv('data/reddit_headlines.csv', index=False)
+```df = pd.DataFrame(headlines, columns=['headline'])
+df.to_csv('data/reddit_headlines.csv', index=False)```
 
