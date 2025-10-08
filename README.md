@@ -47,20 +47,20 @@ cd emotional-map-of-the-internet
 pip install -r requirements.txt
 
 
-Generate the map:
+## Generate the map
 
 "python generate_map.py"
 
-Open the map in your browser:
+## Open the map in your browser
 
 "start index.html"
 
-Live Demo
+## Live Demo
 
 View the live interactive map here:
 https://aisebastianfletcher.github.io/emotional-map-of-the-internet/
 
-PROJECT STRUCTURE: 
+## PROJECT STRUCTURE 
 
 emotional-map-of-the-internet/
 ├── data/                # Your CSV files
@@ -72,7 +72,7 @@ emotional-map-of-the-internet/
 └── .gitignore           # Files to ignore
 
 
-BONUS: Extending the Project.....
+## BONUS: Extending the Project.....
 
 You can add more sources for headlines, such as Reddit, Twitter, or news APIs. Here’s an example of how to fetch Reddit posts using the praw library:
 
